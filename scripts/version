@@ -1,0 +1,33 @@
+#!/bin/bash
+MAJOR=$(git log -1 --format=%cd --date=format:'%y')
+MINOR=$(git log -1 --format=%cd --date=format:'%W')
+PATCH=$(git log -1 --format=%cd --date=format:'%w')
+REV=$(git rev-list --count HEAD)
+HASH=$(git rev-parse --short HEAD)
+VERSION=$MAJOR.$MINOR.$PATCH.$REV-$HASH
+
+if [ $# -eq 0 ]; then
+    echo $VERSION
+    exit
+fi
+
+if [ $1 = "short" ]; then
+    echo $MAJOR.$MINOR.$PATCH.$REV
+fi
+
+if [ $1 = "hash" ]; then
+    echo $HASH
+fi
+
+if [ $1 = "file" ]; then
+    echo $MAJOR-$MINOR-$PATCH-$REV-$HASH
+fi
+
+if [ $1 = "fileshort" ]; then
+    echo $MAJOR-$MINOR-$PATCH-$REV
+fi
+
+if [ $1 = "tag" ]; then
+    git tag $VERSION
+    echo "Tagged branch with $VERSION"
+fi

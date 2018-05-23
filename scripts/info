@@ -1,0 +1,6 @@
+git fetch --all &> /dev/null 
+{
+  ghi
+  printf '%*s\n' "${COLUMNS:-$(tput cols)}" '' | tr ' ' -
+  log --all --graph
+} | more -R

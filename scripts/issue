@@ -1,0 +1,2 @@
+git checkout -B issue/$1
+ghi show $1

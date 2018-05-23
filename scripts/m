@@ -1,0 +1,23 @@
+if [[ $(echo $*) ]]; then
+    ex="$*"
+else
+    read -p "$ " ex
+fi
+
+#if [ $ex="exit" ]; then
+# exit
+#fi
+
+pi=$(echo "scale=30; 4*a(1)" | bc -l)
+ex=$(echo $ex | sed -e 's/pi/'$pi'/g')
+ex=$(echo $ex | sed -e 's/sin/s/g')
+ex=$(echo $ex | sed -e 's/cos/c/g')
+
+bc -l <<< "scale=4; $ex"
+
+if [[ $(echo $*) ]]; then
+   exit
+else
+    m
+fi
+

@@ -1,0 +1,2 @@
+curl -sS https://api.ipify.org/
+echo ""

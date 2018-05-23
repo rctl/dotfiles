@@ -1,0 +1,4 @@
+git add .
+DATE=$(date +"%Y-%m-%d %H:%m")
+git commit -m "Checkin $DATE"
+git push
